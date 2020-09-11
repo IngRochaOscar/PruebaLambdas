@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  obtieneusuarioconsulta:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.8
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: >-
+        arn:aws:iam::301300765385:role/service-role/agregar_consulta_ine-role-psb9ep6d
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /consulta
+            Method: GET
+        Api2:
+          Type: Api
+          Properties:
+            Path: /MyResource
+            Method: ANY
+      Environment:
+        Variables:
+          consultaVer: consulta_servicio_verifica
+          consultaine: consulta_datos_ine
